@@ -11,9 +11,9 @@
 ## 📦 安装方式
 
 ```bash
-npm install edgeit
+npm install edgeit.js
 # 或
-yarn add edgeit
+yarn add edgeit.js
 ```
 
 ## 🛠 基础用法

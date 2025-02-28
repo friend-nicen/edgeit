@@ -1,6 +1,6 @@
 # EdgeIt
 
-> 智能图片描边处理库 | **[在线演示](https://diyjs.nicen.cn/edgeit)** | **[在线文档](https://diyjs.nicen.cn/edgeit/edgeit.html)**
+> 基于Canvas的智能图片描边处理库，自动提取透明图片的图像轮廓，并进行描边 | **[在线演示](https://diyjs.nicen.cn/edgeit)** | **[在线文档](https://diyjs.nicen.cn/edgeit/edgeit.html)**
 
 ## 🚀 核心特性
 

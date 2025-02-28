@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EdgeIt 图片描边测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .upload-container {
+            margin-bottom: 20px;
+        }
+
+        .image-container {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .image-container img {
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 100%;
+            height: auto;
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+<h1>EdgeIt 图片描边测试</h1>
+
+<!-- 文件上传控件 -->
+<div class="upload-container">
+    <label for="file-input">上传图片：</label>
+    <input type="file" id="file-input" accept="image/*">
+</div>
+
+<div style="color: red;">转换之后的图像大小为：原始大小（指定大小）+ 描边 * 2</div>
+
+<!-- 图片展示区域 -->
+<div class="image-container">
+    <div>
+        <h3>原始图片</h3>
+        <img id="original-image" alt="原始图片" style="display: none;">
+    </div>
+    <div>
+        <h3>描边图片</h3>
+        <img id="processed-image" alt="描边图片" style="display: none;">
+    </div>
+</div>
+
+<!-- 加载 Rollup 编译后的 UMD 文件 -->
+<script src="../dist/index.umd.js"></script>
+<script>
+    // 初始化 EdgeIt
+    const edgeIt = new window.EdgeIt({
+        strokeColor: '#ff0000', // 描边颜色
+        strokeWidth: 60,         // 描边宽度
+    });
+
+    // 获取 DOM 元素
+    const fileInput = document.getElementById('file-input');
+    const originalImage = document.getElementById('original-image');
+    const processedImage = document.getElementById('processed-image');
+
+    // 监听文件选择事件
+    fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        // 创建文件 URL
+        const fileUrl = URL.createObjectURL(file);
+
+        // 加载图片并处理
+        loadAndProcessImage(fileUrl);
+    });
+
+    // 加载图片并处理
+    async function loadAndProcessImage(imageUrl) {
+        try {
+            // 显示原始图片
+            originalImage.src = imageUrl;
+            originalImage.style.display = 'block';
+
+            // 调用 EdgeIt 处理图片
+            const resultImage = await edgeIt.process(imageUrl);
+
+            // 显示处理后的图片
+            processedImage.src = resultImage.src;
+            processedImage.style.display = 'block';
+        } catch (error) {
+            console.error('图片处理失败:', error);
+            alert('图片处理失败，请检查控制台日志。');
+        }
+    }
+
+    // 初始化
+    window.onload = () => {
+        loadAndProcessImage('./girl.png');
+    }
+</script>
+</body>
+</html>

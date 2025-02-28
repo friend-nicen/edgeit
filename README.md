@@ -1,6 +1,6 @@
 # EdgeIt
 
-> 智能图片描边处理库 | **[在线演示](/edgeit)** | **[在线文档](https://diyjs.nicen.cn/edgeit/edgeit.html)**
+> 智能图片描边处理库 | **[在线演示](https://diyjs.nicen.cn/edgeit)** | **[在线文档](https://diyjs.nicen.cn/edgeit/edgeit.html)**
 
 ## 🚀 核心特性
 

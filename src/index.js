@@ -169,7 +169,7 @@ class EdgeIt {
         outlinePoints.forEach((x, i) => {
             if (i % 2 === 0) {
                 context.moveTo(x, outlinePoints[i + 1]);
-                context.lineTo(x, outlinePoints[i + 1]);
+                context.lineTo(x + 1, outlinePoints[i + 1]);
             }
         });
 
